@@ -11,7 +11,12 @@ export default class Chat extends React.Component {
   }
 
   addMessage(text) {
-    const message = {sender: '', content: text};
+    const message = {
+      author: {
+        uid: this.props.user.uid,
+        name: this.props.user.name
+      },
+      content: text};
     this.db.push(message);
   }
 
@@ -19,7 +24,7 @@ export default class Chat extends React.Component {
     console.log('chat component render');
     return (
       <div className='chat'>
-        <Conversation author={this.props.author} messages={this.props.messages} />
+        <Conversation user={this.props.user} messages={this.props.messages} />
         <Composition action={this.addMessage} />
       </div>
     )

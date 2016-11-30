@@ -11,7 +11,7 @@ export default class App extends React.Component {
     console.log('app component render');
     return (
       <div id='app'>
-        <Chat author='1' messages={this.props.messages}/>
+        <Chat user={this.props.user} messages={this.props.messages}/>
       </div>
     )
   }

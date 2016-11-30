@@ -1,17 +1,19 @@
 import Message from '../message';
 
-describe('Message', ()=>{
+describe.only('Message', ()=>{
   let component, messageData;
 
   beforeEach(()=>{
     messageData = {
       authored: true,
-      content: 'content'
+      content: 'content',
+      author: 'First Last'
     };
     component = mount(
       <Message
         authored={messageData.authored}
         content={messageData.content}
+        author={messageData.author}
         />
     );
   });
@@ -26,7 +28,13 @@ describe('Message', ()=>{
 
   describe('Layout', ()=>{
     it('has text of its content', ()=> {
-      expect(component.text()).to.eql(messageData.content);
+      const content = component.find('.content');
+      expect(content.text()).to.eql(messageData.content);
+    });
+
+    it('has initials of author', () => {
+      const author = component.find('.author');
+      expect(author.text()).to.eql('FL');
     });
 
     context('when message authored', ()=>{
