@@ -4,10 +4,9 @@ import Message from './message';
 
 export class Conversation extends Component {
   _renderMessages() {
-    console.log(this.props.messages);
     return this.props.messages.map((m,i) => {
       let authored;
-      if (m.sender === this.props.author) {
+      if (i % 2 === 0) {
         authored = true;
       } else {
         authored = false;

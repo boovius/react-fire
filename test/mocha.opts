@@ -5,5 +5,5 @@
 --reporter progress
 --recursive
 
-app/**/*-test.js
+src/**/*-test.js
 

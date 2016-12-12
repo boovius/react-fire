@@ -1,36 +1,18 @@
-import Composition from '../composition';
+import { Composition } from '../composition';
 
 describe('Composition', ()=>{
-  let composition, action;
-  const textInput = 'text-input';
+  let composition;
 
   beforeEach(()=>{
     action = sinon.spy();
 
-    composition = mount(<Composition action={action} />);
-  });
-
-  describe('Initialization', ()=>{
-    it('has an action', ()=>{
-      expect(composition.prop('action')).to.eql(action);
-    });
-
-    it('has empty text', ()=>{
-      expect(composition.state('text')).to.eql('');
-    });
+    composition = mount(<Composition />);
   });
 
   describe('Layout', ()=>{
     it('has a text input', ()=>{
       const input = composition.find('input');
       expect(input.length).to.eql(1);
-    });
-
-    it('text input set to text on state', ()=>{
-      composition.setState({text: textInput});
-
-      const input = composition.find('input');
-      expect(input.prop('value')).to.eql(textInput);
     });
 
     it('has a send button', ()=>{

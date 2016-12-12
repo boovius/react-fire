@@ -14,7 +14,7 @@ export const Composition = ( { dispatch }) => {
       <button onClick={ () => {
         dispatch({
           type: c.ADD_MESSAGE,
-          data: input.value
+          content: input.value
         });
         input.value = '';
       }}>

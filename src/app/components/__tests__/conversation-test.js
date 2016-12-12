@@ -1,4 +1,4 @@
-import Conversation from '../conversation';
+import { Conversation } from '../conversation';
 import Message from '../message';
 
 describe('Converastion', ()=>{
@@ -17,13 +17,6 @@ describe('Converastion', ()=>{
       }
     ];
     conversation = mount(<Conversation author={author} messages={messageData}/>);
-  });
-
-  describe('Initialization', ()=>{
-    it('takes messages', ()=>{
-      expect(conversation.prop('messages')).to.eql(messageData);
-      expect(conversation.prop('author')).to.eql(author);
-    });
   });
 
   describe('Layout', ()=>{

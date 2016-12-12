@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import DatabaseIntercepter from './app/components/databaseIntercepter';
 import App from './app';
 import { Provider } from 'react-redux';
 import { db } from './firebase.config';
@@ -21,7 +22,9 @@ messages.on('value', ( snapshot ) => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <DatabaseIntercepter>
+      <App />
+    </DatabaseIntercepter>
   </Provider>,
   document.getElementById('container')
 );
