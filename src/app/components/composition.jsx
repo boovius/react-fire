@@ -7,19 +7,20 @@ export const Composition = ( { dispatch }) => {
 
   return(
     <div className='composition'>
-      <input
-        type='text'
-        ref = { node => { input = node; }}
-      />
-      <button onClick={ () => {
+      <form onSubmit={ (e) => {
+        e.preventDefault();
         dispatch({
           type: c.ADD_MESSAGE,
           content: input.value
         });
         input.value = '';
       }}>
-        send
-      </button>
+        <input
+          type='text'
+          ref = { node => { input = node; }}
+        />
+        <input type='submit'value='send'/>
+      </form>
     </div>
   )
 }

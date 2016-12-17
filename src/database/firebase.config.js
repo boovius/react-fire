@@ -10,4 +10,9 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-export const db = firebase.database();
+const db = firebase.database();
+
+export const messages = db.ref('messages');
+
+export default db;
+

@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DatabaseIntercepter from './app/components/databaseIntercepter';
 import App from './app';
 import { Provider } from 'react-redux';
-import { db } from './firebase.config';
-import { store } from './store';
+import DatabaseIntercepter from './database/databaseIntercepter';
+import db, { messages } from './database/firebase.config';
+import store from './store';
 import { c } from './constants';
 
 console.log(store.getState());
 
-const messages = db.ref('messages');
+window.db = db;
 
 messages.on('value', ( snapshot ) => {
   store.dispatch({

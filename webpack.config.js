@@ -13,6 +13,8 @@ module.exports = {
     filename: 'index.js',
   },
 
+  devtool: 'eval-source-maps',
+
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
