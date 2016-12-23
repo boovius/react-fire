@@ -12,7 +12,7 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
 
-export const messages = db.ref('messages');
+export const messagesRef = db.ref('messages');
 
 export default db;
 

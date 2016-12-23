@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { messages } from './firebase.config';
+import React, { Component, PropTypes } from 'react';
+import { messagesRef } from './firebase.config';
 
-export class DatabaseIntercepter extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    const oldMessages = this.props.messages;
-    const newMessages = nextProps.messages;
+export default class DatabaseIntercepter extends Component {
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    const oldMessages = this.context.store.getState().messages;
+    const newMessages = nextContext.store.getState().messages;
+    console.log('old messages', oldMessages);
+    console.log('new messages', newMessages);
 
     if (needToUpdateDB(oldMessages, newMessages)) {
-      const lastIndex = nextProps.messages.length - 1;
-      const newMessage = nextProps.messages[lastIndex];
+      const lastIndex = newMessages.messages.length - 1;
+      const newMessage = newMessages.messages[lastIndex];
       console.log(newMessage);
       return true;
     } else {
@@ -27,10 +28,6 @@ const needToUpdateDB = (oldMessages, newMessages) => {
     (oldMessages.length !== 0 || newMessages.length === 1)
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    messages: state.messages
-  }
+DatabaseIntercepter.childContextTypes = {
+  store: PropTypes.shape
 }
-
-export default connect(mapStateToProps)(DatabaseIntercepter);
