@@ -11,17 +11,17 @@ console.log(store.getState());
 
 window.db = db;
 
-messagesRef.on('value', ( snapshot ) => {
-  // if snapshot.val() === null do something here
-
-  console.log('hello there');
-  store.dispatch({
-    type: c.RECEIVE_MESSAGES_DATA,
-    data: snapshot.val()
-  });
-
-  console.log(store.getState());
-});
+//messagesRef.on('value', ( snapshot ) => {
+//  // if snapshot.val() === null do something here
+//
+//  console.log('hello there');
+//  store.dispatch({
+//    type: c.RECEIVE_MESSAGES_DATA,
+//    data: snapshot.val()
+//  });
+//
+//  console.log(store.getState());
+//});
 
 ReactDOM.render(
   <Provider store={store}>

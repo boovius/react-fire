@@ -3,22 +3,20 @@ import { messagesRef } from './firebase.config';
 
 export default class DatabaseIntercepter extends Component {
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-    const oldMessages = this.context.store.getState().messages;
-    const newMessages = nextContext.store.getState().messages;
-    console.log('old messages', oldMessages);
-    console.log('new messages', newMessages);
 
-    if (needToUpdateDB(oldMessages, newMessages)) {
-      const lastIndex = newMessages.messages.length - 1;
-      const newMessage = newMessages.messages[lastIndex];
-      console.log(newMessage);
+    console.log('context', this.context)
+    console.log('nexContext', nextContext)
+    if (this.context != nextContext) {
+      console.log('update');
       return true;
     } else {
+      console.log('do not update');
       return false
     }
   }
 
   render() {
+    console.log('store', this.context.store)
     return this.props.children
   }
 }
@@ -28,6 +26,6 @@ const needToUpdateDB = (oldMessages, newMessages) => {
     (oldMessages.length !== 0 || newMessages.length === 1)
 }
 
-DatabaseIntercepter.childContextTypes = {
-  store: PropTypes.shape
+DatabaseIntercepter.contextTypes = {
+  store: PropTypes.shape.isRequired
 }
